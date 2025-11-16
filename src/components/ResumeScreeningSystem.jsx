@@ -9,7 +9,6 @@ const ResumeScreeningSystem = () => {
   const [matchingResults, setMatchingResults] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [modelMetrics, setModelMetrics] = useState(null);
-  const [selectedModel, setSelectedModel] = useState('knn');
   const [currentResume, setCurrentResume] = useState('');
   const [candidateName, setCandidateName] = useState('');
   
@@ -638,21 +637,6 @@ const ResumeScreeningSystem = () => {
                       </div>
                     ))}
                   </div>
-                  
-                  <div className="mt-4">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Select Model</label>
-                    <select
-                      className="w-full p-3 mb-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:outline-none"
-                      value={selectedModel}
-                      onChange={(e) => setSelectedModel(e.target.value)}
-                    >
-                      <option value="knn">K-Nearest Neighbors (KNN)</option>
-                      <option value="randomForest">Random Forest</option>
-                      <option value="naiveBayes">Naive Bayes</option>
-                      <option value="svm">Support Vector Machine (SVM)</option>
-                    </select>
-                  </div>
-
                   <button
                     onClick={handleBulkClassification}
                     disabled={isProcessing}
@@ -896,10 +880,10 @@ const ResumeScreeningSystem = () => {
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="text-xl font-bold text-gray-800 mb-6">Model Performance Comparison</h2>
               <div className="space-y-6">
-                {Object.entries(modelMetrics).map(([model, metrics]) => (
+                {Object.entries(modelMetrics).filter(([model]) => model === 'knn').map(([model, metrics]) => (
                   <div key={model} className="border-b pb-4 last:border-b-0">
                     <h3 className="font-semibold text-lg text-gray-700 mb-3 capitalize">
-                      {model === 'knn' ? 'K-Nearest Neighbors' : model === 'randomForest' ? 'Random Forest' : model === 'naiveBayes' ? 'Naive Bayes' : 'Support Vector Machine'}
+                      K-Nearest Neighbors (KNN) Algorithm
                     </h3>
                     <div className="space-y-2">
                       {Object.entries(metrics).map(([metric, value]) => (
