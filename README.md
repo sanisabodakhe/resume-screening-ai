@@ -143,6 +143,11 @@ The system demonstrates practical application of machine learning concepts in au
 7. React Documentation: Component Architecture and State Management
 8. Tailwind CSS Documentation: Utility-first CSS Framework
 
+
+
+
+   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ---
 
 Installation and Setup
